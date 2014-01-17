@@ -1,0 +1,7 @@
+#!/bin/bash
+LC=10
+if [ $# -gt 1 ]
+then
+  LC=$2
+fi
+avro-read $1 | head -n$LC

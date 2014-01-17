@@ -1,0 +1,7 @@
+#!/bin/bash
+GREP_ARG=${1}
+if [[ ${GREP_ARG} == "" ]];
+then
+  GREP_ARG=`whoami`
+fi
+ps auw | grep -i ${GREP_ARG} | grep -v grep | grep -v ${0}
