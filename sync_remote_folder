@@ -1,0 +1,5 @@
+#!/bin/bash
+REMOTE_DIR=`pwd`
+LOCAL_DIR=`cd ..; pwd`
+REMOTE_DIR=${REMOTE_DIR/Users/home}
+rsync -auvW --inplace $1:$REMOTE_DIR $LOCAL_DIR
