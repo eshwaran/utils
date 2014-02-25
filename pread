@@ -1,0 +1,23 @@
+#!/usr/bin/python
+import cPickle
+import sys
+
+def prettyprint(data, indent=''):
+    if isinstance(data, list):
+        for x in data:
+       	    prettyprint(x,indent+'  ')
+    elif isinstance(data, dict):
+        for x in sorted(data.keys()):
+       	    print '%s%s:' % (indent, x)
+	    prettyprint(data[x], indent+'  ')
+    else:
+	print '%s%s' % (indent, data)
+
+def pread(filename):
+    f = open(filename, 'rb')
+    data = cPickle.load(f)
+    f.close()
+    prettyprint(data)
+
+if __name__ == '__main__':
+   pread(sys.argv[1]) 

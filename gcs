@@ -1,0 +1,3 @@
+#!/bin/bash
+USER=`whoami`
+git clone ssh://${USER}@gerrit.spotify.net/${1}.git ${2}
