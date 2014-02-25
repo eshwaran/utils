@@ -1,5 +1,10 @@
 #!/bin/bash
 LOCAL_DIR=`pwd`
+if [[ ${LOCAL_DIR} == ${HOME} ]]
+then
+  echo "You shouldn't sync from home"
+  exit 2
+fi
 REMOTE_DIR=`cd ..; pwd`
 REMOTE_DIR=${REMOTE_DIR/Users/home}
 cd $LOCAL_DIR
