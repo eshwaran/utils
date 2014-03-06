@@ -1,0 +1,25 @@
+#!/usr/bin/python
+import ftplib
+import getpass
+from optparse import OptionParser
+
+def upload(ftp, user, password, ftpdir, filenames):
+    session = ftplib.FTP(ftp, user, password)
+    session.cwd(ftpdir)
+    for filename in filenames:
+        print 'Uploading %s to %s/%s ...' % (filename, ftp, ftpdir)
+        file = open(filename,'rb')
+        session.storbinary('STOR %s' % filename, file)
+        file.close()
+    session.quit()
+    print 'Done'
+
+if __name__ == '__main__':
+    parser = OptionParser()
+    parser.add_option("-f", "--ftp", dest="ftp", default="ftp.box.com")
+    parser.add_option("-u", "--user", dest="user", default=None)
+    parser.add_option("-p", "--password", dest="password", default=None)
+    parser.add_option("-d", "--remote-directory", dest="directory", default="Data")
+    (options, args) = parser.parse_args()
+    user = options.user if options.user else '%s@spotify.com' % (getpass.getuser())
+    upload(options.ftp, user, options.password, options.directory, args)
