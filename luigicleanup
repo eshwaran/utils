@@ -1,0 +1,14 @@
+#!/bin/bash
+
+DIRECTORY=$1
+
+files=`snakebite ls $DIRECTORY | awk '{print $8}'`
+
+for f in $files ; do
+ if echo $f | grep "luigi-tmp" ; then
+   echo "Deleting $f"
+   srm $f
+ fi
+done
+
+echo "Done"
