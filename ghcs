@@ -1,0 +1,2 @@
+#!/bin/bash
+git clone git@ghe.spotify.net:discovery/${1}.git ${2}
