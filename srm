@@ -1,2 +1,2 @@
 #!/bin/bash
-hadoop fs -rm -r $*
+snakebite rm -R $*
